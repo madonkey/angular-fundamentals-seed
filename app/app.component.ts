@@ -5,13 +5,27 @@ import { Component } from "@angular/core";
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
-      {{ title }}
+      {{ evenOrOdd }}
     </div>
   `
 })
 export class AppComponent {
-  title: string;
+  min: number;
+  evenOrOdd: string;
   constructor() {
-    this.title = "Ultimate Angular";
+    this.min = this.getTime();
+    this.isEven(this.min);
   }
+  getTime() {
+    return new Date().getMinutes();
+  }
+  num = this.min;
+  isEven(num: number) {
+    if ((num % 2) === 0) {
+      this.evenOrOdd = 'Even';
+    } else {
+      this.evenOrOdd = 'Odd';
+    }
+  }
+
 }
