@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+
+import { PassengerDashboardService } from '../../passenger-dashboard.service';
+
 import { Passenger } from "../../models/passenger.model";
-import { eventNames } from "cluster";
 
 
 @Component({
@@ -19,32 +21,10 @@ export class PassengerDashboardComponent implements OnInit {
 
   passengers: Passenger[];
 
-  constructor() { }
+  constructor(private passengerService: PassengerDashboardService) { }
 
   ngOnInit() {
-    this.passengers = [{
-      id: 1,
-      fullname: 'Dermot',
-      checkedIn: true,
-      checkedInDate: 614217600000,
-      children: [{ name: 'Blah', age: 1 }, { name: 'Derp', age: 5 }]
-    }, {
-      id: 2,
-      fullname: 'Keelin',
-      checkedIn: false,
-      children: null
-    }, {
-      id: 3,
-      fullname: 'Ollie',
-      checkedIn: true,
-      checkedInDate: 1491642000000,
-      children: null
-    }, {
-      id: 4,
-      fullname: 'Lola',
-      checkedIn: false,
-      children: null
-    }]
+    this.passengerService.getPassengers().subscribe((data: Passenger[]) => this.passengers = data);
   }
 
   handleEdit(event: Passenger) {
