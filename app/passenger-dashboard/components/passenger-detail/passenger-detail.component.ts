@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnChanges, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { Passenger } from "../../models/passenger.model";
 
 @Component({
@@ -25,7 +25,7 @@ import { Passenger } from "../../models/passenger.model";
         </div>
     `
 })
-export class PassengerDetailComponent {
+export class PassengerDetailComponent implements OnChanges, OnInit {
     @Input() detail: Passenger;
 
     @Output() remove: EventEmitter<any> = new EventEmitter();
@@ -34,6 +34,17 @@ export class PassengerDetailComponent {
     editing: boolean = false;
 
     constructor() { }
+
+    ngOnChanges(changes) {
+        if (changes.detail) {
+            this.detail = Object.assign({}, changes.detail.currentValue);
+        }
+        console.log('ngOnChanges');
+    }
+
+    ngOnInit() {
+        console.log('ngOnInit');
+    }
 
     onNameChange(value: string) {
         this.detail.fullname = value;
@@ -44,7 +55,7 @@ export class PassengerDetailComponent {
             this.edit.emit(this.detail);
         }
         this.editing = !this.editing;
-        
+
     }
     onRemove() {
         this.remove.emit(this.detail);
