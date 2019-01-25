@@ -5,35 +5,26 @@
       "fullname": "Dermot",
       "checkedIn": true,
       "checkedInDate": 1548217600000,
-      "children": [
-        {
-          "name": "Blah",
-          "age": 1
-        },
-        {
-          "name": "Derp",
-          "age": 5
-        }
-      ]
+      "baggage": ""
     },
     {
       "id": 2,
       "fullname": "Keelin",
       "checkedIn": false,
-      "children": null
+      "baggage": ""
     },
     {
       "id": 3,
       "fullname": "Ollie",
       "checkedIn": true,
       "checkedInDate": 1491642000000,
-      "children": null
+      "baggage": ""
     },
     {
       "id": 4,
       "fullname": "Lola ",
       "checkedIn": false,
-      "children": null
+      "baggage": ""
     }
   ]
 }
