@@ -7,20 +7,29 @@ import { Baggage } from '../../models/baggage.model';
     styleUrls: ['passenger-form.component.scss'],
     template: `
         <form #form="ngForm" novalidate>
-            {{ detail | json }}
             <div>
                 Passenger name:
                 <input
                     type="text"
                     name="fullname"
+                    required
+                    #fullname="ngModel"
                     [ngModel]="detail?.fullname">
+                    <div *ngIf="fullname.errors?.required && fullname.dirty" class="error">
+                        Passenger name is required
+                    </div>
             </div>
             <div>
                 Passenger ID:
                 <input
                     type="number"
                     name="id"
+                    required
+                    #id="ngModel"
                     [ngModel]="detail?.id">
+                    <div *ngIf="id.errors?.required && id.dirty" class="error">
+                    Passenger ID is required
+                </div>
             </div>
             <div>
                 <label>
@@ -55,7 +64,10 @@ import { Baggage } from '../../models/baggage.model';
                 </select>
             </div>
 
-            {{ form.value | json }}
+            <button type="submit" [disabled]="form.invalid">
+                Update passenger
+            </button>
+
         </form>
     `
 })
